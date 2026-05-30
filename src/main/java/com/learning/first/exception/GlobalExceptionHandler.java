@@ -17,14 +17,25 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidAuthenticationToken.class)
     public ResponseEntity<Map<String, Object>> invalidToken(InvalidAuthenticationToken ex)
     {
-        return error(HttpStatus.UNAUTHORIZED,ex.getMessage());
+        return error(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
-
     @ExceptionHandler(WalletCreationFailedException.class)
-    public ResponseEntity<Map<String, Object>> WalletCreationFailed(InvalidAuthenticationToken ex)
+    public ResponseEntity<Map<String, Object>> WalletCreationFailed(WalletCreationFailedException ex)
     {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR,ex.getMessage());
+        return error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    }
+
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> accountNotFound(AccountNotFoundException ex)
+    {
+        return error(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<Map<String, Object>> insufficientBalance(InsufficientBalanceException ex)
+    {
+        return error(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

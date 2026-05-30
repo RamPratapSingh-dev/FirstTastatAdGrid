@@ -27,7 +27,7 @@ public class CreditCard  implements PaymentInterface {
     }
 
     @Override
-    public boolean pay(Double finalAmount)
+    public boolean pay(Double finalAmount, paymentRequestDto request)
     {
 
         return true;

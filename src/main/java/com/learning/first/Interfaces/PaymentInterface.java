@@ -19,7 +19,7 @@ public interface PaymentInterface {
         Double finalAmount = calculateFees(request.getAmount());
 
 
-        if(pay(finalAmount))
+        if(pay(finalAmount, request))
         {
 
             generateRecipt(request.getAmount(), finalAmount);
@@ -33,7 +33,7 @@ public interface PaymentInterface {
     }
     boolean validateDetails(paymentRequestDto request);
     Double calculateFees( Double amount);
-    boolean pay( Double finalAmount);
+    boolean pay( Double finalAmount, paymentRequestDto request);
     default void generateRecipt( Double amount, Double finalAmount)
     {
         System.out.println("============= Recipt ===================");

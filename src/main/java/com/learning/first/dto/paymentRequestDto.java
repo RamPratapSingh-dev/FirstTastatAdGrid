@@ -18,4 +18,7 @@ public class paymentRequestDto {
     Double amount;
     @NotBlank(message = "Token must not be null for validation")
     String token;
+
+    @NotBlank(message = "Account number must not be blank")
+    String accountNo;
 }
