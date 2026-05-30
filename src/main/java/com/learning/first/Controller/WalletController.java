@@ -1,6 +1,7 @@
 package com.learning.first.Controller;
 
 import com.learning.first.Interfaces.CreateWalletInterface;
+import com.learning.first.dto.ApiResponse;
 import com.learning.first.dto.CreateWalletDto;
 import com.learning.first.dto.CreateWalletResponseDto;
 import jakarta.validation.Valid;
@@ -20,10 +21,10 @@ public class WalletController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CreateWalletResponseDto> CreateWallet(@Valid @RequestBody CreateWalletDto request)
+    public ResponseEntity<ApiResponse<CreateWalletResponseDto>> CreateWallet(@Valid @RequestBody CreateWalletDto request)
     {
 
-        return ResponseEntity.ok(createWallet.CreateWallet(request));
+        return ResponseEntity.ok(ApiResponse.success("Wallet created successfully", createWallet.CreateWallet(request)));
     }
 
 

@@ -1,5 +1,6 @@
 package com.learning.first.Controller;
 
+import com.learning.first.dto.ApiResponse;
 import com.learning.first.dto.paymentRequestDto;
 import com.learning.first.dto.paymentResponseDto;
 import com.learning.first.generator.PaymentObjGenerator;
@@ -20,10 +21,10 @@ public class PaymentController {
     }
 
     @PostMapping("/proceed")
-    public ResponseEntity<paymentResponseDto> process(@Valid @RequestBody paymentRequestDto request) {
+    public ResponseEntity<ApiResponse<paymentResponseDto>> process(@Valid @RequestBody paymentRequestDto request) {
         PaymentInterface processor = paymentObjGenerator.getProcessor(request.getPaymentType());
 
 
-        return ResponseEntity.ok(processor.process(request));
+        return ResponseEntity.ok(ApiResponse.success("Payment processed successfully", processor.process(request)));
     }
 }
